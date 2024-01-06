@@ -85,12 +85,15 @@ public class Main {
 		try {
 			Cliente c;
 			c = new Cliente(nome, cPF,idade);
+			return c;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Ocorreu um erro ao cadastrar o cliente");
+			
 		}
+		return null;
 		
-		return c;
+		
 	}
 	
 	public static void listarClientes(List<Cliente> lista) {
