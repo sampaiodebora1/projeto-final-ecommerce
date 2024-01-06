@@ -32,35 +32,45 @@ public class Main {
 			
 			switch (opcao) {
 			case 1: {		
-				String nome = leia.nextLine();
-				System.out.println("Cadastro de Cliente:");
-				System.out.println("Informe o nome do cliente:");
-				nome = leia.nextLine();
-				
-				System.out.println("Informe o cpf do cliente:");
-				String cpf = leia.nextLine();
-				
-				System.out.println("Informe a idade do cliente:");
-				int idade = leia.nextInt();
-				
-		        Cliente c1 = cadastrarCliente(nome, cpf, idade);
-		        listaClientes.add(c1);
-		        
-		        System.out.println("*** Cliente cadastrado ***");
-		        		        
-		        break;
+				try {
+					String nome = leia.nextLine();
+					System.out.println("Cadastro de Cliente:");
+					System.out.println("Informe o nome do cliente:");
+					nome = leia.nextLine();
+					
+					System.out.println("Informe o cpf do cliente:");
+					String cpf = leia.nextLine();
+					
+					System.out.println("Informe a idade do cliente:");
+					int idade = leia.nextInt();
+					
+					Cliente c1 = cadastrarCliente(nome, cpf, idade);
+					listaClientes.add(c1);
+					
+					System.out.println("*** Cliente cadastrado ***");
+							        
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			case 2: {				
 				listarClientes(listaClientes);
 				break;
 			}
 			case 3: {				
-				String nome = leia.nextLine();
-				System.out.println("Informe o nome do cliente a ser deletado:");
-				nome = leia.nextLine();
-				deletarCliente(nome, listaClientes);
-				System.out.println("Cliente deletado");
-				break;
+				try {
+					String nome = leia.nextLine();
+					System.out.println("Informe o nome do cliente a ser deletado:");
+					nome = leia.nextLine();
+					deletarCliente(nome, listaClientes);
+					System.out.println("Cliente deletado");
+					break;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 			default:
@@ -72,24 +82,40 @@ public class Main {
 	}
 	
 	public static Cliente cadastrarCliente(String nome, String cPF, int idade) {
-		Cliente c = new Cliente(nome, cPF,idade);
+		try {
+			Cliente c;
+			c = new Cliente(nome, cPF,idade);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocorreu um erro ao cadastrar o cliente");
+		}
 		
 		return c;
 	}
 	
 	public static void listarClientes(List<Cliente> lista) {
-		System.out.println("Lista de clientes cadastrados:\n");
-		for (int i = 0; i < lista.size(); i++) {
-            Cliente c = lista.get(i);
-			System.out.println("Nome: "+c.getNome());
-			System.out.println("Cpf: "+c.getCPF());
-			System.out.println("Idade: "+c.getIdade());
-			System.out.println("\n");
-        }
+		try {
+			System.out.println("Lista de clientes cadastrados:\n");
+			for (int i = 0; i < lista.size(); i++) {
+			    Cliente c = lista.get(i);
+				System.out.println("Nome: "+c.getNome());
+				System.out.println("Cpf: "+c.getCPF());
+				System.out.println("Idade: "+c.getIdade());
+				System.out.println("\n");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocorreu um erro ao listar os clientes");
+		}
 	}
 	
 	public static void deletarCliente(String nome, List<Cliente> lista){
-		lista.remove(nome);
+		try {
+			lista.remove(nome);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ocorreu um erro ao deletar o cliente");
+		}
 
 	}
 }
